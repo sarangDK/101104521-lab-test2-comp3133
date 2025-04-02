@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [CommonModule, RouterLink, MatCardModule, MatButtonModule, MissionFilterComponent],
   template: `
-    <h2 class="title">SpaceX Missions</h2>
+    <h2 class="title">🚀 SpaceX Missions</h2>
     <app-missionfilter (yearSelected)="onYearSelected($event)"></app-missionfilter>
     <div class="mission-grid">
       <mat-card *ngFor="let mission of missions" class="mission-card">
@@ -23,9 +23,13 @@ import { MatButtonModule } from '@angular/material/button';
         </mat-card-header>
         <mat-card-content>
           <p><strong>Rocket:</strong> {{ mission.rocket.rocket_name }} ({{ mission.rocket.rocket_type }})</p>
+          <p><strong>Launch Year:</strong> {{ mission.launch_year }}</p>
+          <p><strong>Successful Launch:</strong> {{ mission.launch_success ? 'Yes' : 'No' }}</p>
+          <p><strong>Successful Landing:</strong> {{ mission.rocket.first_stage.cores[0].land_success ? 'Yes' : 'No' }}</p>
         </mat-card-content>
         <mat-card-actions align="end">
           <a mat-button color="primary" [routerLink]="['/details', mission.flight_number]">
+  
             View Details
           </a>
         </mat-card-actions>
